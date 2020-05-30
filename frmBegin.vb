@@ -96,6 +96,13 @@ Public Class frmBegin
         txtSQL = txtSQL & "And (BOM_RM_Update Between '" & strDate01 & "' "
         txtSQL = txtSQL & "And '" & strDate02 & "') "
 
+        If optA.Checked = True Then
+            txtSQL = txtSQL & "And Trh_keyType='A' "
+        ElseIf optB.Checked = True Then
+
+            txtSQL = txtSQL & "And Trh_keyType='B' "
+        End If
+
         If txtStkName.Text <> "" Then
             txtSQL = txtSQL & "And BOM_PC_Name like '%" & txtStkName.Text & "%' "
         End If
@@ -320,15 +327,15 @@ Public Class frmBegin
             End If
 
             If chkLowerUpper = 0 Then
-                lvi.BackColor = System.Drawing.Color.Yellow
-                lvi.ForeColor = System.Drawing.Color.Black
+                lvi.BackColor = System.Drawing.Color.Brown
+                lvi.ForeColor = System.Drawing.Color.White
 
             ElseIf chkLowerUpper = 1 Then
-                lvi.BackColor = System.Drawing.Color.White
+                lvi.BackColor = System.Drawing.Color.YellowGreen
                 lvi.ForeColor = System.Drawing.Color.Black
             Else
-                lvi.BackColor = System.Drawing.Color.Red
-                lvi.ForeColor = System.Drawing.Color.Black
+                lvi.BackColor = System.Drawing.Color.DarkOrange
+                lvi.ForeColor = System.Drawing.Color.White
 
             End If
 
@@ -345,6 +352,13 @@ Public Class frmBegin
         lbQtyStd.Text = intQtyStd
         lbQtyLower.Text = intQtyLower
         lbQtyUper.Text = intQtyUpper
+        Dim intQtyTotal As Integer = intQtyStd + intQtyLower + intQtyUpper
+        lbLowUpperTotal.Text = intQtyTotal
+
+        lbUpper_Retio.Text = Format((intQtyUpper / intQtyTotal) * 100, "#,##0.00")
+        lbLower_Retio.Text = Format((intQtyLower / intQtyTotal) * 100, "#,##0.00")
+        lbStd_Retio.Text = Format((intQtyStd / intQtyTotal) * 100, "#,##0.00")
+
 
         lbQtyN_Total.Text = Format(CInt(lbQtyN.Text) + CInt(lbErrLower.Text) + CInt(lbErrUpper.Text), "#,##0")
         ' series0.ChartType = SeriesChartType.Column
