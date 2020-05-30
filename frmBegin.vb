@@ -11,6 +11,7 @@ Public Class frmBegin
 
     Private Sub frmBegin_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         lsvBOMformat()
+        hist.crt_Histogram()
     End Sub
 
     Sub lsvBOMformat()
@@ -42,6 +43,8 @@ Public Class frmBegin
 
         Dim data01 As New DataPoint()
         Dim series0 As New Series("SERIES0")
+        Dim series1 As New Series("SERIES1")
+        Dim series2 As New Series("SERIES2")
 
         Dim lvi As ListViewItem
         Dim anyData() As String
@@ -55,6 +58,8 @@ Public Class frmBegin
         chtWeight.ChartAreas(0).AxisX.LineWidth = 2
         chtWeight.ChartAreas(0).AxisX.Interval = 1
         chtWeight.Series.Clear()
+
+        chtUpperLow.Series.Clear()
 
         If optS_1.Checked = True Then '
             intScales = 1
@@ -135,9 +140,14 @@ Public Class frmBegin
         Dim intQtyStd As Integer = 0
         Dim intQtyUpper As Integer = 0
         Dim intQtyLower As Integer = 0
+
+
         Dim chkLowerUpper As Integer = 0
+
         Dim chkRow As Integer = 0
-        hist.crt_Histogram()
+
+        hist.dbHist.Clear()
+
 
         For x = 0 To subDS.Tables("master").Rows.Count - 1
             errValue1 = 0
@@ -154,7 +164,6 @@ Public Class frmBegin
                 strDoc = .Item("BOM_No")
                 strStkItem = .Item("BOM_PC_Name")
                 strStation = .Item("BOM_RM_Scales")
-
                 dblStkWeight = .Item("bomF_Val")
                 dblStkWeightSTD = .Item("bomD_Val")
                 '===========  คำนวน Upper Lower ===================
@@ -179,10 +188,15 @@ Public Class frmBegin
 
                         If (dblStkWeight <= dblStkWeightUpper) And (dblStkWeight >= dblStkWeightLower) Then
                             intQtyStd = intQtyStd + 1
-                            chkLowerUpper = 0
-                        Else
-                            intQtyLower = intQtyLower + 1
                             chkLowerUpper = 1
+                        Else
+                            If dblStkWeight > dblStkWeightUpper Then
+                                intQtyUpper = intQtyUpper + 1
+                                chkLowerUpper = 2
+                            Else
+                                intQtyLower = intQtyLower + 1
+                                chkLowerUpper = 0
+                            End If
                         End If
                         i = i + 1
                         anyData = New String() {i, strDate, strStation, strDoc, strStkItem, dblStkWeightSTD.ToString("#,##0.0"), dblStkWeight.ToString("#,##0.0"), dblStkWeightLower.ToString("#,##0.0"), dblStkWeightUpper.ToString("#,##0.0"), strUpdateDate}
@@ -207,10 +221,15 @@ Public Class frmBegin
 
                     If (dblStkWeight <= dblStkWeightUpper) And (dblStkWeight >= dblStkWeightLower) Then
                         intQtyStd = intQtyStd + 1
-                        chkLowerUpper = 0
-                    Else
-                        intQtyLower = intQtyLower + 1
                         chkLowerUpper = 1
+                    Else
+                        If dblStkWeight > dblStkWeightUpper Then
+                            intQtyUpper = intQtyUpper + 1
+                            chkLowerUpper = 2
+                        Else
+                            intQtyLower = intQtyLower + 1
+                            chkLowerUpper = 0
+                        End If
                     End If
                     i = i + 1
                     anyData = New String() {i, strDate, strStation, strDoc, strStkItem, dblStkWeightSTD.ToString("#,##0.0"), dblStkWeight.ToString("#,##0.0"), dblStkWeightLower.ToString("#,##0.0"), dblStkWeightUpper.ToString("#,##0.0"), strUpdateDate}
@@ -218,9 +237,7 @@ Public Class frmBegin
                     'If chkLowerUpper = 1 Then
                     '    lvi.BackColor = System.Drawing.Color.DarkOrange
                     '    lvi.ForeColor = System.Drawing.Color.Black
-
                     'Else
-
                     '    lvi.BackColor = System.Drawing.Color.GreenYellow
                     '    lvi.ForeColor = System.Drawing.Color.Black
 
@@ -238,10 +255,15 @@ Public Class frmBegin
 
                             If (dblStkWeight <= dblStkWeightUpper) And (dblStkWeight >= dblStkWeightLower) Then
                                 intQtyStd = intQtyStd + 1
-                                chkLowerUpper = 0
-                            Else
-                                intQtyLower = intQtyLower + 1
                                 chkLowerUpper = 1
+                            Else
+                                If dblStkWeight > dblStkWeightUpper Then
+                                    intQtyUpper = intQtyUpper + 1
+                                    chkLowerUpper = 2
+                                Else
+                                    intQtyLower = intQtyLower + 1
+                                    chkLowerUpper = 0
+                                End If
                             End If
                             i = i + 1
                             anyData = New String() {i, strDate, strStation, strDoc, strStkItem, dblStkWeightSTD.ToString("#,##0.0"), dblStkWeight.ToString("#,##0.0"), dblStkWeightLower.ToString("#,##0.0"), dblStkWeightUpper.ToString("#,##0.0"), strUpdateDate}
@@ -272,10 +294,15 @@ Public Class frmBegin
 
                         If (dblStkWeight <= dblStkWeightUpper) And (dblStkWeight >= dblStkWeightLower) Then
                             intQtyStd = intQtyStd + 1
-                            chkLowerUpper = 0
-                        Else
-                            intQtyLower = intQtyLower + 1
                             chkLowerUpper = 1
+                        Else
+                            If dblStkWeight > dblStkWeightUpper Then
+                                intQtyUpper = intQtyUpper + 1
+                                chkLowerUpper = 2
+                            Else
+                                intQtyLower = intQtyLower + 1
+                                chkLowerUpper = 0
+                            End If
                         End If
                         i = i + 1
                         anyData = New String() {i, strDate, strStation, strDoc, strStkItem, dblStkWeightSTD.ToString("#,##0.0"), dblStkWeight.ToString("#,##0.0"), dblStkWeightLower.ToString("#,##0.0"), dblStkWeightUpper.ToString("#,##0.0"), strUpdateDate}
@@ -291,24 +318,20 @@ Public Class frmBegin
                 End If
 
             End If
-            If chkLowerUpper = 1 Then
 
-                lvi.BackColor = System.Drawing.Color.DarkOrange
+            If chkLowerUpper = 0 Then
+                lvi.BackColor = System.Drawing.Color.Yellow
                 lvi.ForeColor = System.Drawing.Color.Black
 
-
+            ElseIf chkLowerUpper = 1 Then
+                lvi.BackColor = System.Drawing.Color.White
+                lvi.ForeColor = System.Drawing.Color.Black
             Else
-                If chkRow = 1 Then
-                    lvi.BackColor = System.Drawing.Color.WhiteSmoke
-                    lvi.ForeColor = System.Drawing.Color.Black
-
-                Else
-                    lvi.BackColor = System.Drawing.Color.White
-                    lvi.ForeColor = System.Drawing.Color.Black
-
-                End If
+                lvi.BackColor = System.Drawing.Color.Red
+                lvi.ForeColor = System.Drawing.Color.Black
 
             End If
+
             'Else '=======================  00
             '    anyData = New String() {i, strDate, strStation, strDoc, strStkItem, dblStkWeightSTD.ToString("#,##0.00"), dblStkWeight.ToString("#,##0.00"), dblStkWeightLower.ToString("#,##0.00"), dblStkWeightUpper.ToString("#,##0.00"), strUpdateDate}
             '    lvi = New ListViewItem(anyData)
@@ -317,11 +340,14 @@ Public Class frmBegin
             'End If
 
         Next
+
+
         lbQtyStd.Text = intQtyStd
         lbQtyLower.Text = intQtyLower
+        lbQtyUper.Text = intQtyUpper
 
         lbQtyN_Total.Text = Format(CInt(lbQtyN.Text) + CInt(lbErrLower.Text) + CInt(lbErrUpper.Text), "#,##0")
-        series0.ChartType = SeriesChartType.Column
+        ' series0.ChartType = SeriesChartType.Column
         series0.BorderWidth = 4
         series0.IsValueShownAsLabel = True
         series0.IsVisibleInLegend = False
@@ -345,6 +371,67 @@ Public Class frmBegin
             '.ChartAreas(0).AxisX.LabelAutoFitStyle = LabelAutoFitStyles.DecreaseFont  ' จัดให้อยู่ในแนวเดียวกันทั้งหดม
             'chtWeight.ChartAreas(0).AxisY.Maximum = max0 + 3
         End With
+
+        Dim viewHist As New DataView(hist.dbHist)
+
+        Dim hist_y As Double
+        Dim hist_Name As String
+        ' viewHist.RowFilter = "hist_name=''  "
+        viewHist.Sort = "hist_name asc"
+        Dim chkTBrow As Integer = 0
+
+        For Each row As DataRowView In viewHist
+            'For d = 0 To view.Table.Rows.Count - 1
+            With viewHist.Table
+
+                hist_Name = row.Item("hist_name")
+                hist_y = row.Item("v_y")
+                series1.Points.AddXY(hist_Name, hist_y)
+
+                'If chkTBrow = 0 Then
+                '    If CDbl(hist_Name) = dblStkWeightSTD Then
+
+                '        series2.Points.AddXY(dblStkWeightSTD, lbNTotal.Text)
+                '    ElseIf CDbl(hist_Name) = dblStkWeightLower Then
+                '        series2.Points.AddXY(dblStkWeightLower, lbNTotal.Text)
+                '    ElseIf CDbl(hist_Name) = dblStkWeightUpper Then
+                '        series2.Points.AddXY(dblStkWeightUpper, lbNTotal.Text)
+                '    End If
+                'End If
+
+                chkTBrow = chkTBrow + 1
+
+            End With
+        Next
+        With series1
+            .ChartType = SeriesChartType.Column
+            .BorderWidth = 2
+            .IsValueShownAsLabel = True
+            .IsVisibleInLegend = False
+            .Font = New Font(Me.Font.Name, 10, FontStyle.Regular)
+            .Palette = ChartColorPalette.EarthTones
+            '.ChartType = SeriesChartType.Line
+        End With
+        With series2
+            .ChartType = SeriesChartType.Column
+            .BorderWidth = 2
+            .IsValueShownAsLabel = True
+            .IsVisibleInLegend = False
+            .Font = New Font(Me.Font.Name, 10, FontStyle.Regular)
+            .Palette = ChartColorPalette.EarthTones
+            '.ChartType = SeriesChartType.Line
+        End With
+        With chtUpperLow
+            .TextAntiAliasingQuality = TextAntiAliasingQuality.Normal
+            .Series.Add(series1)
+            .Series.Add(series2)
+            .BorderlineWidth = 1
+            '.ChartAreas(0).AxisX.MinorTickMark.Enabled = True  ' ทำให้ Label ชื่อในแนวแกน X โชว์ทั้งหมด
+            '.ChartAreas(0).AxisX.LabelAutoFitStyle = LabelAutoFitStyles.DecreaseFont  ' จัดให้อยู่ในแนวเดียวกันทั้งหดม
+            'chtWeight.ChartAreas(0).AxisY.Maximum = max0 + 3
+        End With
+
+
 
 
 
@@ -486,5 +573,25 @@ Public Class frmBegin
 
 
         End If
+    End Sub
+
+    Private Sub lsvData_SelectedIndexChanged(sender As Object, e As EventArgs) Handles lsvData.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub lsvData_DoubleClick(sender As Object, e As EventArgs) Handles lsvData.DoubleClick
+        Dim lvi0 As ListViewItem
+        ' Dim frmCSreport As New frmCSreport
+
+        For i = 0 To lsvData.SelectedItems.Count - 1
+
+            lvi0 = lsvData.SelectedItems(i)
+            ' Dim strGrpID As String = ""
+            txtStkName.Text = lsvData.Items(lvi0.Index).SubItems(4).Text
+
+        Next
+        'selOptSL = 0
+        'frmCSreport.Show()
+        Call showData()
     End Sub
 End Class

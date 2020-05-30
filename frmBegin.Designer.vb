@@ -22,12 +22,12 @@ Partial Class frmBegin
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim ChartArea9 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend9 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series9 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea10 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend10 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series10 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.lsvData = New System.Windows.Forms.ListView()
         Me.cmbRun = New System.Windows.Forms.Button()
         Me.txtDate02 = New System.Windows.Forms.DateTimePicker()
@@ -45,7 +45,8 @@ Partial Class frmBegin
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.chtUpperLow = New System.Windows.Forms.DataVisualization.Charting.Chart()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.chtWeight = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.txtStkName = New System.Windows.Forms.TextBox()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -85,7 +86,8 @@ Partial Class frmBegin
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chtUpperLow, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
         CType(Me.chtWeight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.optSection.SuspendLayout()
         Me.SuspendLayout()
@@ -157,7 +159,7 @@ Partial Class frmBegin
         '
         Me.txtDocNo.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.875!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.txtDocNo.Location = New System.Drawing.Point(1076, 438)
-        Me.txtDocNo.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.txtDocNo.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDocNo.Name = "txtDocNo"
         Me.txtDocNo.Size = New System.Drawing.Size(157, 24)
         Me.txtDocNo.TabIndex = 6
@@ -244,6 +246,7 @@ Partial Class frmBegin
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Location = New System.Drawing.Point(10, 12)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
@@ -255,7 +258,7 @@ Partial Class frmBegin
         Me.TabPage1.Controls.Add(Me.lsvData)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(1334, 353)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "TabPage1"
@@ -263,46 +266,56 @@ Partial Class frmBegin
         '
         'TabPage2
         '
-        Me.TabPage2.Controls.Add(Me.Chart1)
-        Me.TabPage2.Controls.Add(Me.chtWeight)
+        Me.TabPage2.Controls.Add(Me.chtUpperLow)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(1334, 353)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "TabPage2"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
-        'Chart1
+        'chtUpperLow
         '
-        ChartArea9.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea9)
-        Legend9.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend9)
-        Me.Chart1.Location = New System.Drawing.Point(676, 6)
-        Me.Chart1.Name = "Chart1"
-        Series9.ChartArea = "ChartArea1"
-        Series9.Legend = "Legend1"
-        Series9.Name = "Series1"
-        Me.Chart1.Series.Add(Series9)
-        Me.Chart1.Size = New System.Drawing.Size(588, 337)
-        Me.Chart1.TabIndex = 1
-        Me.Chart1.Text = "คๅภตภ"
+        Me.chtUpperLow.BorderlineColor = System.Drawing.Color.Black
+        ChartArea1.Name = "ChartArea1"
+        Me.chtUpperLow.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.chtUpperLow.Legends.Add(Legend1)
+        Me.chtUpperLow.Location = New System.Drawing.Point(6, 6)
+        Me.chtUpperLow.Name = "chtUpperLow"
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Series1"
+        Me.chtUpperLow.Series.Add(Series1)
+        Me.chtUpperLow.Size = New System.Drawing.Size(1258, 337)
+        Me.chtUpperLow.TabIndex = 1
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.chtWeight)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(1334, 353)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "TabPage3"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
         'chtWeight
         '
-        ChartArea10.Name = "ChartArea1"
-        Me.chtWeight.ChartAreas.Add(ChartArea10)
-        Legend10.Name = "Legend1"
-        Me.chtWeight.Legends.Add(Legend10)
-        Me.chtWeight.Location = New System.Drawing.Point(17, 15)
+        Me.chtWeight.BorderlineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Solid
+        ChartArea2.Name = "ChartArea1"
+        Me.chtWeight.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        Me.chtWeight.Legends.Add(Legend2)
+        Me.chtWeight.Location = New System.Drawing.Point(17, 8)
         Me.chtWeight.Name = "chtWeight"
-        Series10.ChartArea = "ChartArea1"
-        Series10.Legend = "Legend1"
-        Series10.Name = "Series1"
-        Me.chtWeight.Series.Add(Series10)
-        Me.chtWeight.Size = New System.Drawing.Size(672, 328)
-        Me.chtWeight.TabIndex = 0
+        Series2.ChartArea = "ChartArea1"
+        Series2.Legend = "Legend1"
+        Series2.Name = "Series1"
+        Me.chtWeight.Series.Add(Series2)
+        Me.chtWeight.Size = New System.Drawing.Size(1301, 328)
+        Me.chtWeight.TabIndex = 1
         Me.chtWeight.Text = "Chart1"
         '
         'txtStkName
@@ -384,7 +397,7 @@ Partial Class frmBegin
         Me.txtUplow.Name = "txtUplow"
         Me.txtUplow.Size = New System.Drawing.Size(58, 24)
         Me.txtUplow.TabIndex = 26
-        Me.txtUplow.Text = "20"
+        Me.txtUplow.Text = "5"
         Me.txtUplow.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lbQtyN
@@ -415,9 +428,9 @@ Partial Class frmBegin
         Me.optSection.Controls.Add(Me.optB)
         Me.optSection.Controls.Add(Me.optA)
         Me.optSection.Location = New System.Drawing.Point(358, 397)
-        Me.optSection.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.optSection.Margin = New System.Windows.Forms.Padding(2)
         Me.optSection.Name = "optSection"
-        Me.optSection.Padding = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.optSection.Padding = New System.Windows.Forms.Padding(2)
         Me.optSection.Size = New System.Drawing.Size(244, 54)
         Me.optSection.TabIndex = 30
         Me.optSection.TabStop = False
@@ -442,7 +455,7 @@ Partial Class frmBegin
         Me.optB.AutoSize = True
         Me.optB.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.optB.Location = New System.Drawing.Point(182, 21)
-        Me.optB.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.optB.Margin = New System.Windows.Forms.Padding(2)
         Me.optB.Name = "optB"
         Me.optB.Size = New System.Drawing.Size(58, 24)
         Me.optB.TabIndex = 1
@@ -455,7 +468,7 @@ Partial Class frmBegin
         Me.optA.AutoSize = True
         Me.optA.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(222, Byte))
         Me.optA.Location = New System.Drawing.Point(110, 21)
-        Me.optA.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.optA.Margin = New System.Windows.Forms.Padding(2)
         Me.optA.Name = "optA"
         Me.optA.Size = New System.Drawing.Size(62, 24)
         Me.optA.TabIndex = 0
@@ -729,7 +742,8 @@ Partial Class frmBegin
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
-        CType(Me.Chart1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chtUpperLow, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
         CType(Me.chtWeight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.optSection.ResumeLayout(False)
         Me.optSection.PerformLayout()
@@ -755,7 +769,6 @@ Partial Class frmBegin
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents chtWeight As DataVisualization.Charting.Chart
     Friend WithEvents txtStkName As TextBox
     Friend WithEvents Label6 As Label
     Friend WithEvents chkCutErr1 As CheckBox
@@ -769,7 +782,7 @@ Partial Class frmBegin
     Friend WithEvents optSection As GroupBox
     Friend WithEvents optB As RadioButton
     Friend WithEvents optA As RadioButton
-    Friend WithEvents Chart1 As DataVisualization.Charting.Chart
+    Friend WithEvents chtUpperLow As DataVisualization.Charting.Chart
     Friend WithEvents Label11 As Label
     Friend WithEvents txtErr2 As TextBox
     Friend WithEvents chkCutErr2 As CheckBox
@@ -791,4 +804,6 @@ Partial Class frmBegin
     Friend WithEvents lbQtyUper As Label
     Friend WithEvents lbQtyLower As Label
     Friend WithEvents lbQtyStd As Label
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents chtWeight As DataVisualization.Charting.Chart
 End Class
